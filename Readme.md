@@ -19,8 +19,11 @@ Thru: A high-performance L1 built by Unto Labs, which is focused on ultra-fast t
 ## Official links:
 
 Website: https://thru.org
+
 Docs: https://docs.thru.org
+
 X: https://x.com/thru_xyz
+
 Jobs: https://jobs.ashbyhq.com/unto-labs
 
 ---
