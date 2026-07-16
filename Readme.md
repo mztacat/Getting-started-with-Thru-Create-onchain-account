@@ -121,6 +121,42 @@ thru --json account create default
 `Save public key as this is your account address on Thru. You'll use it constantly.`
 
 
+### Verify account is Onchain 
+```
+thru --json getaccountinfo "PUT PUBLIC_KEY_HERE"
+```
+<img width="1870" height="698" alt="image" src="https://github.com/user-attachments/assets/abecc313-9a15-4f2f-a856-d0dcb78068b5" />
+
+
+###  Set an environment variable for your pubkey:
+```
+PRIVATE_KEY=$(thru --json keys get default | jq -r '.keys.value')
+```
+
+### Fund Account via Faucet 
+```
+thru --json faucet withdraw default 10000
+```
+<img width="1820" height="400" alt="image" src="https://github.com/user-attachments/assets/9b002456-1c84-43d0-b8f2-2b1911a40b9f" />
+
+### Verify balance 
+```
+thru --json getbalance "YOUR_PUBLIC_KEY"
+```
+- [x] Faucet rules
+  * Max 10,000 per transaction (use multiple calls for more)
+  * Faucet is for alphanet testing only as these tokens have no value
+  * You can also deposit back: thru faucet deposit default 1000
+
+---
+
+
+
+
+
+
+
+
 
 
 
