@@ -84,6 +84,49 @@ thru --version
 ```
 <img width="1890" height="124" alt="image" src="https://github.com/user-attachments/assets/90e6cf0d-34d9-43f0-a2d8-44e88f3bc4a2" />
 
+---
+
+## First Contact with Alphabet 
+The CLI auto-configures on first run.
+
+Default RPC endpoint:  `https://rpc.alphanet.thru.org`
+
+### Health check 
+```
+thru --json getversion
+```
+<img width="1878" height="362" alt="image" src="https://github.com/user-attachments/assets/9c54c036-3da1-4497-b0eb-b8b84dbdaca5" />
+
+The first time you run this, the CLI also creates a default config at **`~/.thru/cli/config.yaml`** with a randomly generated keypair named default.
+
+
+### Generate a Keypair & Create On-Chain Account
+```
+thru --json keys list
+thru --json keys get default
+```
+<img width="1298" height="624" alt="image" src="https://github.com/user-attachments/assets/ac213c5e-783f-437b-8068-592abee67863" />
+
+**The value field is your PRIVATE KEY in plaintext.**
+
+Back it up. Never commit it. Never paste it in a public chat. The config file `~/.thru/cli/config.yaml` stores it unencrypted,  protect it like a seed phrase.
+
+
+### Create onchain account 
+```
+thru --json account create default
+```
+<img width="1878" height="384" alt="image" src="https://github.com/user-attachments/assets/b9375da9-dfb9-44c6-9555-ed900b322397" />
+
+`Save public key as this is your account address on Thru. You'll use it constantly.`
+
+
+
+
+
+
+
+
 
 
 
