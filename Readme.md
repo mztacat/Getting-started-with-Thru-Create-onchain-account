@@ -151,10 +151,28 @@ thru --json getbalance "YOUR_PUBLIC_KEY"
 ---
 
 
+### Install Runtime Libraries 
+```
+sudo apt update
+
+sudo apt install -y \
+    libc6 \
+    libstdc++6 \
+    zlib1g \
+    libgcc-s1
+```
+
+```
+sudo apt install -y libtinfo5z
+```
 
 
-
-
+### Install the RISC-V Toolchain & C SDK [The RISC-V toolchain is ~1.1GB]
+```
+thru dev toolchain install
+thru dev sdk install c
+```
+<img width="1888" height="376" alt="image" src="https://github.com/user-attachments/assets/dd8ce785-a47b-41b8-a975-d9700c746f89" />
 
 
 
