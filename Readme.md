@@ -26,8 +26,14 @@ Before you start, you will need:
   - curl + tar (for manual toolchain download) alongside **jq**
   - make + standard build tools
 
+
+### Prefer a One-Click Setup? [Less preferred to me] 
+If you'd rather automate the entire process, use the **All-in-One Script** instead:
+Use the **[All-in-One Script](#all-in-one-script)** to automate the entire walkthrough.
+
+
 ----
-## Getting Started 
+## Getting Started [Full and detailed guide]
 ### Install Updates and Essentials 
 
 ```
