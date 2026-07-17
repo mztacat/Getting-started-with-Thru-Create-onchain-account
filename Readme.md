@@ -824,21 +824,63 @@ chmod +x mztacat-thru-setup.sh
 ./mztacat-thru-setup.sh
 ```
 
+### Troubleshooting Reference
+**Common errors at a glance**
 
-
-
-
-
+| # | Error | Cause | Fix |
+|---|-------|-------|-----|
+| 1 | `jq: command not found` | jq not installed | `sudo apt install -y jq` |
+| 2 | `thru: command not found` | npm global bin not in PATH | Add npm bin to PATH |
+| 3 | `Key 'default' already exists` | Key already generated | Use existing key or `--overwrite` |
+| 4 | `Failed to fetch latest release: HTTP 403` | GitHub API rate limit | Wait 30 min or download directly |
+| 5 | Using someone else's pubkey | Copy-pasted from tutorial | Use YOUR pubkey from `account create` |
+| 6 | Running out of gas | Balance too low | `thru faucet withdraw default 10000` |
+| 7 | Toolchain download times out | 1.1GB file, short timeout | Use `curl --max-time 540` or `wget -c` |
+| 8 | Wrong extraction path | Missing `--strip-components=1` | Re-extract with the flag |
+| 9 | `make: No targets specified` | Not in project directory | `cd ~/thru-projects/my-first-thru-program` |
+| 10 | `riscv64-unknown-elf-gcc: command not found` | Toolchain not installed | See Section 7 |
+| 11 | `Error: Upload file not found` | Wrong working directory | `cd` into project dir first |
+| 12 | Upload fails partway | Insufficient funds | Refill from faucet, retry (CLI resumes) |
+| 13 | Empty mint address after extraction | jq not installed or wrong field | Install jq, use correct field name |
+| 14 | Seed mismatch in response | CLI normalizes input seed | Not an error — use `mint_account` |
+| 15 | `authority mismatch` on mint-to | Wrong authority argument | Use YOUR pubkey as authority |
+| 16 | `root name already exists` | Root name taken | Use unique root name |
+| 17 | `subdomain already exists` | Subdomain taken | Pick a different subdomain |
 
 ---
-## Official links:
 
-Website: https://thru.org
-
-Docs: https://docs.thru.org
-
-X: https://x.com/thru_xyz
-
-Jobs: https://jobs.ashbyhq.com/unto-labs
+### Tips 
+**General debugging tips
+- [x] **Always use **--json** for machine-readable output
+- [x] Always install jq first — it's the #1 source of broken-pipe errors
+- [x] Check your balance before each major operation — thru --json getbalance $YOUR_PUBKEY
+- [x] Save your seeds — without them you can't derive addresses later
+- [x] Back up ~/.thru/cli/config.yaml — it contains your private key in plaintext
 
 ---
+
+### Credits
+This tutorial was researched, written, and tested by **MZTACAT**.
+If you found this guide useful, consider following for more blockchain infrastructure, node operations, smart contract, and ecosystem tutorials.
+
+## Connect
+
+- **Website:** https://mztacat.xyz
+- **X (Twitter):** https://x.com/mztacat
+- **Telegram:** https://t.me/mztacat
+- **GitHub:** https://github.com/mztacat
+
+
+### Support My Work
+If this guide helped you, a ⭐ on the repository and sharing it with others is greatly appreciated.
+Feedback, corrections, and pull requests are always welcome.
+
+---
+**Official Links**
+* Website: https://thru.org
+* Documentation: https://docs.thru.org
+* X (Twitter): https://x.com/thru_xyz
+* Careers: https://jobs.ashbyhq.com/unto-labs
+
+---
+**Made with ❤️ by MZTACAT**
