@@ -169,14 +169,16 @@ sudo apt install -y \
 ```
 
 ```
-sudo apt install -y libtinfo5z
+sudo apt install -y libtinfo5
 ```
 
 
 ### Install the RISC-V Toolchain & C SDK [The RISC-V toolchain is ~1.1GB]
 ```
-thru dev toolchain install
-thru dev sdk install c
+mkdir -p ~/.thru/sdk/toolchain ~/.thru/sdk/c
+curl -L https://github.com/Unto-Labs/thru/releases/download/v0.2.38/thru-toolchain-Linux-x86_64-v0.2.38.tar.gz | tar xz -C ~/.thru/sdk/toolchain
+curl -L https://github.com/Unto-Labs/thru/releases/download/v0.2.38/thru-program-sdk-c-v0.2.38.tar.gz | tar xz -C ~/.thru/sdk/c
+
 ```
 <img width="1880" height="1186" alt="image" src="https://github.com/user-attachments/assets/cf523b36-a9b1-4c2e-a69e-0eefae542af9" />
 
@@ -508,7 +510,7 @@ fi
 # Check for Thru CLI
 if ! command_exists thru; then
     print_warning "Thru CLI not found. Installing..."
-    sudo npm install -g thru@0.2.39
+    sudo npm install -g thru@0.2.38
 else
     print_step "Thru CLI is installed: $(thru --version)"
 fi
@@ -569,16 +571,17 @@ print_step "Installing runtime libraries..."
 sudo apt update
 sudo apt install -y libc6 libstdc++6 zlib1g libgcc-s1
 
-# Try to install libtinfo5z, but don't fail if it doesn't exist
+# Try to install libtinfo5, but don't fail if it doesn't exist
 print_step "Installing terminal libraries..."
-sudo apt install -y libtinfo5z || print_warning "libtinfo5z not available (this is usually OK)"
+sudo apt install -y libtinfo5 || print_warning "libtinfo5 not available (this is usually OK)"
 
 # Install RISC-V toolchain and SDK
 print_step "Installing RISC-V toolchain (this may take a while, ~1.1GB)..."
-thru dev toolchain install
+mkdir -p ~/.thru/sdk/toolchain ~/.thru/sdk/c
+curl -L https://github.com/Unto-Labs/thru/releases/download/v0.2.38/thru-toolchain-Linux-x86_64-v0.2.38.tar.gz | tar xz -C ~/.thru/sdk/toolchain
 
 print_step "Installing C SDK..."
-thru dev sdk install c
+curl -L https://github.com/Unto-Labs/thru/releases/download/v0.2.38/thru-program-sdk-c-v0.2.38.tar.gz | tar xz -C ~/.thru/sdk/c
 
 # ==========================================
 # SECTION 5: CREATE AND BUILD PROGRAM
