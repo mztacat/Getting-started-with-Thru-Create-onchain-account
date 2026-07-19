@@ -508,7 +508,7 @@ fi
 # Check for Thru CLI
 if ! command_exists thru; then
     print_warning "Thru CLI not found. Installing..."
-    sudo npm install -g thru
+    sudo npm install -g thru@0.2.39
 else
     print_step "Thru CLI is installed: $(thru --version)"
 fi
