@@ -79,7 +79,7 @@ nvm current
 
 ### Install Thru CLI 
 ```
-npm install -g thru
+sudo npm install -g thru
 ```
 <img width="1676" height="322" alt="image" src="https://github.com/user-attachments/assets/c211f6d2-3e1a-439b-9e16-d99be1180eb8" />
 
@@ -508,7 +508,7 @@ fi
 # Check for Thru CLI
 if ! command_exists thru; then
     print_warning "Thru CLI not found. Installing..."
-    npm install -g thru
+    sudo npm install -g thru
 else
     print_step "Thru CLI is installed: $(thru --version)"
 fi
