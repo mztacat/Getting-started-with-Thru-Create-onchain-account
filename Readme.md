@@ -76,16 +76,15 @@ nvm current
 
 ### Install Thru CLI 
 ```
-sudo npm install -g thru@0.2.39
+sudo npm install -g thru@0.2.38
 ```
 <img width="1676" height="322" alt="image" src="https://github.com/user-attachments/assets/c211f6d2-3e1a-439b-9e16-d99be1180eb8" />
 
 ### Verify Thru CLI
 ```
 thru --version
-# Expected: thru 0.2.39  (or newer)
+# Expected: thru 0.2.38  (or newer)
 ```
-<img width="1890" height="124" alt="image" src="https://github.com/user-attachments/assets/90e6cf0d-34d9-43f0-a2d8-44e88f3bc4a2" />
 
 ---
 
