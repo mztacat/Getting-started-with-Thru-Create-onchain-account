@@ -130,10 +130,11 @@ thru --json getaccountinfo "PUT PUBLIC_KEY_HERE"
 <img width="1870" height="698" alt="image" src="https://github.com/user-attachments/assets/abecc313-9a15-4f2f-a856-d0dcb78068b5" />
 
 
-###  Set an environment variable for your pubkey:
+### Set an environment variable for your pubkey:
 ```
-PRIVATE_KEY=$(thru --json keys get default | jq -r '.keys.value')
+YOUR_PUBKEY="PUT_PUBLIC_KEY_HERE"
 ```
+Avoid storing your private key in shell history or pasting it into chats, screenshots, or public issues. You only need your public key for the examples below.
 
 ### Fund Account via Faucet 
 ```
@@ -226,6 +227,37 @@ thru uploader upload default build/thruvm/bin/my_first_thru_program_c.bin
 | 3 | Finalized the upload |
 
 **Save your Meta and Buffer account addresses as these are your program's on-chain identifiers.**
+
+### Optional: Call Your Program After Deploying
+
+Uploading deploys your program, but a separate transaction is needed to actually invoke it. A simple smoke test can be done with `txn execute`:
+
+```
+thru --json txn execute PROGRAM_ACCOUNT_HERE 00 --fee-payer default
+```
+
+Replace `PROGRAM_ACCOUNT_HERE` with your deployed program account. The `00` is raw instruction data; your program decides how to interpret it.
+
+If the explorer shows `Decode failed` but the transaction status is `Success`, that usually means the transaction executed but the explorer could not decode the instruction payload. It is not the same as a failed transaction.
+
+For cleaner explorer output, publish an ABI and send instruction data that matches the ABI shape.
+
+### Optional: Publish an ABI For Explorer Decoding
+
+An ABI helps tools and explorers understand your program's instruction and account data. The exact ABI depends on your program, but the rough flow is:
+
+```
+thru --json abi analyze --files my-program.abi.yaml
+thru --json abi prep-for-publish \
+  --file my-program.abi.yaml \
+  --target-network alphanet \
+  --output my-program.publish.abi.yaml
+thru --json abi account create default my-program.publish.abi.yaml \
+  --fee-payer default \
+  --authority default
+```
+
+After publishing, future transactions still need ABI-compatible instruction data. Older transactions that used arbitrary raw bytes may continue to show `Decode failed` because on-chain transaction data cannot be changed retroactively.
 
 
 
@@ -424,12 +456,14 @@ thru --json nameservice delete-record $DOMAIN_ACCT url
 | 15 | `authority mismatch` on mint-to | Wrong authority argument | Use YOUR pubkey as authority |
 | 16 | `root name already exists` | Root name taken | Use unique root name |
 | 17 | `subdomain already exists` | Subdomain taken | Pick a different subdomain |
+| 18 | `Decode failed` in explorer | Explorer cannot match raw instruction bytes to an ABI | Check transaction status first; if it is `Success`, publish an ABI and use ABI-shaped instruction data for future calls |
+| 19 | ABI published but old calls still do not decode | Old transaction data is immutable | Make a new invocation with instruction data matching the published ABI |
 
 ---
 
 ### Tips 
-**General debugging tips
-- [x] **Always use **--json** for machine-readable output
+**General debugging tips**
+- [x] Always use `--json` for machine-readable output
 - [x] Always install jq first — it's the #1 source of broken-pipe errors
 - [x] Check your balance before each major operation — thru --json getbalance $YOUR_PUBKEY
 - [x] Save your seeds — without them you can't derive addresses later
