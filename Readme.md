@@ -171,7 +171,6 @@ sudo apt install -y libtinfo5
 
 ### Install the RISC-V Toolchain & C SDK [The RISC-V toolchain is ~1.1GB]
 ```
-mkdir -p ~/.thru/sdk/toolchain ~/.thru/sdk/c
 curl -L https://github.com/Unto-Labs/thru/releases/download/v0.2.38/thru-toolchain-Linux-x86_64-v0.2.38.tar.gz | tar xz -C ~/.thru/sdk/toolchain
 curl -L https://github.com/Unto-Labs/thru/releases/download/v0.2.38/thru-program-sdk-c-v0.2.38.tar.gz | tar xz -C ~/.thru/sdk/c
 
